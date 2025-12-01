@@ -119,7 +119,7 @@
   
       // ✅ POST email to your backend
       try {
-        await fetch("http://localhost:3000/email-submit", {
+        await fetch("https://inclsio-survey.onrender.com/email-submit", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email }),
