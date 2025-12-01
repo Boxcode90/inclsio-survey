@@ -112,7 +112,11 @@
         placeholder="yourname@example.com" 
         required 
       />
-
+    <input type="name" 
+          id="nameInput"
+          placeholder="Your preferred name"
+          required
+          />
       <p id="errorMsg"></p>
 
       <button type="submit">Submit</button>
@@ -123,6 +127,7 @@
   <script>
     const form = document.getElementById("emailForm");
     const emailInput = document.getElementById("emailInput");
+    const nameInput = document.getElementById("nameInput");
     const errorMsg = document.getElementById("errorMsg");
   
     form.addEventListener("submit", async (e) => {
@@ -130,7 +135,7 @@
       errorMsg.textContent = "";
   
       const email = emailInput.value.trim();
-  
+      const name = nameInput.value.trim();
       // Basic email pattern check
       const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   
@@ -144,7 +149,7 @@
         await fetch("https://inclsio-survey.onrender.com/email-submit", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email }),
+          body: JSON.stringify({ email, name }),
         });
   
         // Redirect after successful store
