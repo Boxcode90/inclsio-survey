@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Survey</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, red, orange, yellow, green, blue, indigo, violet);
+      margin: 0; padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+    .container {
+      width: 90%; max-width: 700px;
+      background: rgba(255,255,255,0.85);
+      margin: 40px auto; padding: 25px;
+      border-radius: 12px;
+    }
+    textarea {
+      width: 100%; padding: 10px;
+      border-radius: 8px; margin-top: 6px;
+      border: 1px solid #888;
+    }
+    button {
+      padding: 12px 20px; margin-top: 20px;
+      border: none; border-radius: 8px;
+      background: black; color: white;
+      font-size: 16px; cursor: pointer;
+    }
+    label { font-weight: bold; margin-top: 12px; display: block; }
+    .question { margin-bottom: 20px; }
+    .options { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
+    .option-btn {
+      padding: 10px 15px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+      user-select: none;
+      background-color: #f0f0f0;
+    }
+    .option-btn:hover {
+      background-color: #e0e0e0;
+    }
+    .option-btn.selected {
+      background-color: #007bff;
+      color: white;
+      border-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Survey Form</h2>
+    <form id="surveyForm"></form>
+    <button id="submitBtn">Submit</button>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const lang = params.get("lang") || "english";
+    
+    async function loadSurvey() {
+      const res = await fetch(`${lang}.json`);
+      const questions = await res.json();
+    
+      const form = document.getElementById("surveyForm");
+    
+      questions.forEach((q, index) => {
+        const div = document.createElement("div");
+        div.className = "question";
+    
+        const label = document.createElement("label");
+        label.textContent = `${index + 1}. ${q.question}`;
+        div.appendChild(label);
+    
+        if (q.type === "select") {
+          const optionsDiv = document.createElement("div");
+          optionsDiv.className = "options";
+    
+          q.options.forEach(opt => {
+            const btn = document.createElement("div");
+            btn.className = "option-btn";
+            btn.textContent = opt.label;
+            btn.dataset.value = opt.value;
+            btn.dataset.key = q.key;
+    
+            btn.addEventListener("click", () => {
+              optionsDiv.querySelectorAll(".option-btn").forEach(b => b.classList.remove("selected"));
+              btn.classList.add("selected");
+            });
+    
+            optionsDiv.appendChild(btn);
+          });
+    
+          div.appendChild(optionsDiv);
+        } else if (q.type === "textarea") {
+          const ta = document.createElement("textarea");
+          ta.name = q.key;
+          ta.rows = 3;
+          div.appendChild(ta);
+        }
+    
+        form.appendChild(div);
+      });
+    }
+    
+    loadSurvey();
+    
+    document.getElementById("submitBtn").addEventListener("click", async () => {
+      const form = document.getElementById("surveyForm");
+      const data = {};
+    
+      // collect option questions
+      document.querySelectorAll(".option-btn.selected").forEach(btn => {
+        data[btn.dataset.key] = btn.dataset.value;
+      });
+    
+      // collect textarea answers
+      form.querySelectorAll("textarea").forEach(ta => {
+        data[ta.name] = ta.value;
+      });
+    
+      // POST survey data
+      await fetch("http://localhost:3000/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+    
+      // redirect to email collection page
+      window.location.href = "email.html";
+    });
+    </script>
+    
+
+</body>
+</html>

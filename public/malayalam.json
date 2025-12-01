@@ -1,0 +1,282 @@
+[
+  {
+    "key": "employment_status",
+    "type": "select",
+    "question": "നിങ്ങൾ നിലവിൽ ഒരു ജോലിയിൽ ആണോ?",
+    "options": [
+      {"label": "അതെ, ഫുൾ-ടൈം", "value": "Yes, full-time"},
+      {"label": "അതെ, പാർട്ട്-ടൈം", "value": "Yes, part-time"},
+      {"label": "ഫ്രീലാൻസ് / ഗിഗ് ജോലി", "value": "Freelancing/Gig work"},
+      {"label": "ഇല്ല, നിലവിൽ ജോലി തേടുകയാണ്", "value": "Currently seeking employment"},
+      {"label": "മറ്റുള്ളത്", "value": "Other"}
+    ],
+    "required": true
+  },
+  {
+    "key": "job_finding",
+    "type": "select",
+    "question": "നിങ്ങളുടെ നിലവിലുള്ള അല്ലെങ്കിൽ ഏറ്റവും അടുത്ത ജോലിക്കായി നിങ്ങൾ എങ്ങനെ അവസരം കണ്ടെത്തി?",
+    "options": [
+      {"label": "നേരിട്ട് കമ്പനിയിൽ അപേക്ഷിച്ചു", "value": "Direct company application"},
+      {"label": "റഫറൽ വഴി / സുഹൃത്ത് വഴി", "value": "Referral / Friend"},
+      {"label": "NGO അല്ലെങ്കിൽ DEI പ്രോഗ്രാം വഴി", "value": "NGO / DEI initiative"},
+      {"label": "ജോബ് പോർട്ടൽ വഴി", "value": "Job board"},
+      {"label": "മറ്റുള്ളത്", "value": "Other"}
+    ],
+    "required": true
+  },
+  {
+    "key": "education_level",
+    "type": "select",
+    "question": "നിങ്ങളുടെ ഏറ്റവും ഉയർന്ന വിദ്യാഭ്യാസ നിലയോ പ്രൊഫഷണൽ പരിശീലനമോ എന്താണ്?",
+    "options": [
+      {"label": "ഹൈസ്കൂൾ", "value": "High school"},
+      {"label": "ബാചിലർ", "value": "Bachelor's"},
+      {"label": "മാസ്റ്റർ", "value": "Master's"},
+      {"label": "പ്രൊഫഷണൽ ട്രെയിനിംഗ്", "value": "Professional training"},
+      {"label": "മറ്റുള്ളത്", "value": "Other"}
+    ],
+    "required": true
+  },
+  {
+    "key": "industry",
+    "type": "select",
+    "question": "നിങ്ങൾ നിലവിൽ ഏത് വ്യവസായ മേഖലയിലാണ് (അല്ലെങ്കിൽ പ്രവേശിക്കാൻ ആഗ്രഹിക്കുന്നത്)?",
+    "options": [
+      {"label": "ടെക് / ഐടി", "value": "Tech / IT"},
+      {"label": "റീറ്റെയിൽ / സർവീസ്", "value": "Retail / Service"},
+      {"label": "കോർപ്പറേറ്റ് / ഫിനാൻസ്", "value": "Corporate / Finance"},
+      {"label": "ക്രിയേറ്റീവ് / മീഡിയ", "value": "Creative / Media"},
+      {"label": "മറ്റുള്ളത്", "value": "Other"}
+    ],
+    "required": true
+  },
+  {
+    "key": "job_satisfaction",
+    "type": "select",
+    "question": "നിങ്ങളുടെ നിലവിലെ ജോലി സ്ഥാനത്തിൽ നിങ്ങൾ എത്രത്തോളം സംതൃപ്തനാണ്?",
+    "options": [
+      {"label": "വളരെ സംതൃപ്തൻ", "value": "Very Satisfied"},
+      {"label": "1", "value": "1"},
+      {"label": "2", "value": "2"},
+      {"label": "3", "value": "3"},
+      {"label": "4", "value": "4"},
+      {"label": "5", "value": "5"},
+      {"label": "അസംതൃപ്തൻ", "value": "Not Satisfied"}
+    ],
+    "required": true
+  },
+  {
+    "key": "job_matches_skills",
+    "type": "select",
+    "question": "നിങ്ങളുടെ ജോലി നിങ്ങളുടെ കഴിവുകളുമായും താൽപര്യങ്ങളുമായും പൊരുത്തപ്പെടുന്നു എന്ന് നിങ്ങൾക്ക് തോന്നുന്നുണ്ടോ?",
+    "options": [
+      {"label": "അതെ, പൂർണ്ണമായി", "value": "Yes, completely"},
+      {"label": "അൽപം / ഭാഗികമായി", "value": "Somewhat"},
+      {"label": "വളരെയധികം അല്ല", "value": "Not really"},
+      {"label": "ഒട്ടും അല്ല", "value": "Not at all"}
+    ],
+    "required": true
+  },
+  {
+    "key": "dei_job_offer",
+    "type": "select",
+    "question": "നിങ്ങളുടെ കഴിവുകളുമായി പൊരുത്തപ്പെടാത്ത, പക്ഷേ DEI നിയമനത്തിന്റെ ഭാഗമായി നിങ്ങൾക്ക് ഒരു ജോലി നിർദേശിച്ചിട്ടുണ്ടോ?",
+    "options": [
+      {"label": "അതെ", "value": "Yes"},
+      {"label": "ഇല്ല", "value": "No"}
+    ],
+    "required": true
+  },
+  {
+    "key": "dei_job_reason",
+    "type": "textarea",
+    "question": "അതെ എന്ന് ആണെങ്കിൽ ആ ജോലി നിങ്ങൾ എന്തുകൊണ്ട് സ്വീകരിച്ചു / നിരസിച്ചു?",
+    "required": true
+  },
+  {
+    "key": "workplace_challenges",
+    "type": "select",
+    "question": "ട്രാൻസ് / LGBTQIA+ വ്യക്തിയായി നിങ്ങൾ തൊഴിൽസ്ഥലത്ത് നേരിട്ട ഏറ്റവും വലിയ വെല്ലുവിളികൾ എന്തൊക്കെയായിരുന്നു?",
+    "options": [
+      {"label": "പക്ഷപാതം / വിവേചനം", "value": "Bias / discrimination"},
+      {"label": "വളർച്ചാ അവസരങ്ങളുടെ അഭാവം", "value": "Lack of growth opportunities"},
+      {"label": "സഹപ്രവർത്തകരുമായി താരതമ്യപ്പെടുത്തുമ്പോൾ കുറഞ്ഞ ശമ്പളം", "value": "Low pay compared to peers"},
+      {"label": "വെറും \"ടോക്കൺ\" നിയമനം", "value": "Token hiring"},
+      {"label": "ഉൾപ്പെടുത്തലിന് അനുയോജ്യമായ സൗകര്യങ്ങളുടെ അഭാവം", "value": "Lack of inclusive facilities"},
+      {"label": "മാനസികാരോഗ്യത്തിൽ പ്രതികൂല സ്വാധീനം", "value": "Mental health strain"},
+      {"label": "മറ്റുള്ളത്", "value": "Other"}
+    ],
+    "required": true
+  },
+  {
+    "key": "career_confidence",
+    "type": "select",
+    "question": "നിങ്ങളുടെ പ്രൊഫഷണൽ വളർച്ചയുടെ പാതയെ കുറിച്ച് നിങ്ങൾ ഇപ്പോൾ എത്രത്തോളം ആത്മവിശ്വാസം അനുഭവിക്കുന്നു?",
+    "options": [
+      {"label": "വളരെ ആത്മവിശ്വാസമുള്ളത്", "value": "Very Confident"},
+      {"label": "1", "value": "1"},
+      {"label": "2", "value": "2"},
+      {"label": "3", "value": "3"},
+      {"label": "4", "value": "4"},
+      {"label": "5", "value": "5"},
+      {"label": "ആത്മവിശ്വാസമില്ല", "value": "Not Confident"}
+    ],
+    "required": true
+  },
+  {
+    "key": "formal_training",
+    "type": "select",
+    "question": "നിങ്ങൾക്ക് DEI അല്ലെങ്കിൽ NGO സംരംഭങ്ങളിലൂടെ ഏതെങ്കിലും ഔദ്യോഗിക പരിശീലനം ലഭിച്ചിട്ടുണ്ടോ?",
+    "options": [
+      {"label": "അതെ", "value": "Yes"},
+      {"label": "ഇല്ല", "value": "No"}
+    ],
+    "required": true
+  },
+  {
+    "key": "training_helped",
+    "type": "select",
+    "question": "ആ പരിശീലനം നിങ്ങൾക്ക് ഒരു മികച്ച ജോലി നേടാൻ സഹായിച്ചോ?",
+    "options": [
+      {"label": "അതെ, വളരെ സഹായിച്ചു", "value": "Yes, very much"},
+      {"label": "ചില അളവിൽ / കുറച്ച് സഹായിച്ചു", "value": "Somewhat"},
+      {"label": "വളരെയധികം അല്ല", "value": "Not really"},
+      {"label": "ഇല്ല", "value": "No"}
+    ],
+    "required": true
+  },
+  {
+    "key": "desired_training",
+    "type": "select",
+    "question": "ഇപ്പോൾ നിങ്ങൾക്ക് ഏറ്റവും സഹായകരമായ പരിശീലനം ഏതാണ്?",
+    "options": [
+      {"label": "ഡിജിറ്റൽ / ടെക്നോളജി കഴിവുകൾ", "value": "Digital / tech skills"},
+      {"label": "കമ്മ്യൂണിക്കേഷൻ & സോഫ്റ്റ് സ്കിൽസ്", "value": "Communication & soft skills"},
+      {"label": "കരിയർ മാർഗ്ഗനിർദേശം", "value": "Career guidance"},
+      {"label": "കരിയർ വികസനവുമായി ബന്ധപ്പെട്ട സ്കിൽ ട്രെയിനിംഗ്", "value": "Career focused skill training"},
+      {"label": "ഉദ്യമിത്വം / ബിസിനസ്", "value": "Entrepreneurship"},
+      {"label": "മറ്റുള്ളത്", "value": "Other"}
+    ],
+    "required": true
+  },
+  {
+    "key": "platform_interest",
+    "type": "select",
+    "question": "നിങ്ങളുടെ യഥാർത്ഥ കഴിവുകൾ പരിഗണിച്ച് ജോലികൾ നിർദേശിക്കുകയും അതിനായി നിങ്ങളെ പരിശീലിപ്പിക്കുകയും ചെയ്യുന്ന ഒരു പ്ലാറ്റ്ഫോം ഉണ്ടായാൽ, അത് നിങ്ങൾക്ക് ഉപയോഗിക്കാൻ താൽപര്യമുണ്ടോ?",
+    "options": [
+      {"label": "അതെ", "value": "Yes"},
+      {"label": "ബഹുശഃ / ആയേക്കാം", "value": "Maybe"},
+      {"label": "ഇല്ല", "value": "No"}
+    ],
+    "required": true
+  },
+  {
+    "key": "dei_policy",
+    "type": "select",
+    "question": "നിങ്ങളുടെ നിലവിലെ കമ്പനിയിൽ DEI (വൈവിധ്യം, നീതി, ഉൾക്കൊള്ളൽ) നയങ്ങൾ നിലവിലുണ്ടോ?",
+    "options": [
+      {"label": "അതെ", "value": "Yes"},
+      {"label": "ബഹുശഃ / ഉറപ്പില്ല", "value": "Maybe"},
+      {"label": "ഇല്ല", "value": "No"}
+    ],
+    "required": true
+  },
+  {
+    "key": "dei_tokenistic",
+    "type": "select",
+    "question": "നിങ്ങളുടെ കമ്പനിയുടെ DEI നിയമനം യഥാർത്ഥ ഉൾക്കൊള്ളലിനായാണെന്ന് നിങ്ങൾ വിശ്വസിക്കുന്നുണ്ടോ, അല്ലെങ്കിൽ വെറും പ്രദർശനത്തിനായാണോ എന്ന് തോന്നുന്നു?",
+    "options": [
+      {"label": "യഥാർത്ഥവും മനസിനുള്ളതും", "value": "Genuine"},
+      {"label": "ചില അളവിൽ യഥാർത്ഥം", "value": "Somewhat genuine"},
+      {"label": "വെറും പ്രദർശനത്തിനായുള്ളത് / ‘ടോക്കൺ’ നിയമനം", "value": "Tokenistic"},
+      {"label": "അറിയില്ല", "value": "Don’t know"}
+    ],
+    "required": true
+  },
+  {
+    "key": "safety_identity",
+    "type": "select",
+    "question": "തൊഴിൽസ്ഥലത്ത് നിങ്ങളുടെ വ്യക്തിത്വത്തെ (identity) തുറന്നു പറയുമ്പോൾ നിങ്ങൾ സുരക്ഷിതമെന്ന് തോന്നുന്നുണ്ടോ?",
+    "options": [
+      {"label": "വളരെ സുരക്ഷിതം", "value": "Very Safe"},
+      {"label": "1", "value": "1"},
+      {"label": "2", "value": "2"},
+      {"label": "3", "value": "3"},
+      {"label": "4", "value": "4"},
+      {"label": "5", "value": "5"},
+      {"label": "സുരക്ഷിതമല്ല", "value": "Not Safe Enough"}
+    ],
+    "required": true
+  },
+  {
+    "key": "workplace_inclusion_suggestion",
+    "type": "textarea",
+    "question": "നിങ്ങളുടെ അഭിപ്രായത്തിൽ നിങ്ങളുടെ ജോലി സ്ഥലം കൂടുതൽ ഉൾക്കൊള്ളുന്നതാക്കാൻ എന്താണ് ചെയ്യേണ്ടത്?",
+    "required": true
+  },
+  {
+    "key": "trans_org_help",
+    "type": "select",
+    "question": "ട്രാൻസ് വ്യക്തികൾ നടത്തുന്ന ഒരു സംഘടന നിങ്ങളുടെ കമ്പനിയെ DEI നയങ്ങൾ (മെഡിക്കൽ, നിയമപരമായ, സാമൂഹിക തുടങ്ങിയവ) രൂപപ്പെടുത്തുന്നതിൽ സഹായിച്ചാൽ, അത് നിങ്ങളുടെ ജോലി സ്ഥലം കൂടുതൽ സൗകര്യപ്രദമാക്കുമെന്ന് നിങ്ങൾക്ക് തോന്നുന്നുണ്ടോ?",
+    "options": [
+      {"label": "അതെ", "value": "Yes"},
+      {"label": "ഇല്ല", "value": "No"},
+      {"label": "ബഹുശഃ / ആയേക്കാം", "value": "Maybe"}
+    ],
+    "required": true
+  },
+  {
+    "key": "bias_freelance",
+    "type": "select",
+    "question": "നിങ്ങൾ ഫ്രീലാൻസ് അല്ലെങ്കിൽ ഗിഗ് ജോലികൾക്കായി അപേക്ഷിക്കുമ്പോൾ ഒരിക്കലെങ്കിലും പക്ഷപാതമോ വിവേചനമോ നേരിട്ടിട്ടുണ്ടോ?",
+    "options": [
+      {"label": "അതെ", "value": "Yes"},
+      {"label": "ഇല്ല", "value": "No"},
+      {"label": "ബഹുശഃ / ആയേക്കാം", "value": "Maybe"}
+    ],
+    "required": true
+  },
+  {
+    "key": "prefer_freelance",
+    "type": "select",
+    "question": "പേയ്മെന്റ് സുരക്ഷിതമായതും, ഉൾക്കൊള്ളുന്ന (inclusive) നിയമകരോടുകൂടിയതും, സുരക്ഷിതമായ അന്തരീക്ഷമുള്ളതുമായ ഫ്രീലാൻസ് / ഗിഗ് അവസരങ്ങൾ ലഭിച്ചാൽ, നിങ്ങൾക്ക് അവ തിരഞ്ഞെടുക്കാൻ താൽപര്യമുണ്ടോ?",
+    "options": [
+      {"label": "അതെ", "value": "Yes"},
+      {"label": "ഇല്ല", "value": "No"},
+      {"label": "ബഹുശഃ / ആയേക്കാം", "value": "Maybe"}
+    ],
+    "required": true
+  },
+  {
+    "key": "career_goal_3yr",
+    "type": "textarea",
+    "question": "അടുത്ത മൂന്ന് വർഷത്തിനുള്ളിൽ നിങ്ങളുടെ കരിയർ ലക്ഷ്യം എന്താണ്?",
+    "required": true
+  },
+  {
+    "key": "career_obstacles",
+    "type": "select",
+    "question": "ആ ലക്ഷ്യത്തിലെത്തുന്നതിൽ ഇപ്പോൾ നിങ്ങളെ തടസ്സപ്പെടുത്തുന്നത് എന്താണ്?",
+    "options": [
+      {"label": "അവസരങ്ങളുടെ കുറവ്", "value": "Lack of opportunity"},
+      {"label": "കഴിവുകളുടെ കുറവ്", "value": "Lack of skills"},
+      {"label": "പക്ഷപാതം / വിവേചനം", "value": "Bias / discrimination"},
+      {"label": "മാർഗനിർദേശമോ മെന്റർഷിപ്പോ ഇല്ലായ്മ", "value": "Lack of mentorship"},
+      {"label": "സാമ്പത്തിക പ്രശ്നങ്ങൾ", "value": "Financial issues"},
+      {"label": "മറ്റുള്ളത്", "value": "Other"}
+    ],
+    "required": true
+  },
+  {
+    "key": "platform_usage",
+    "type": "select",
+    "question": "നിങ്ങളുടെ കഴിവുകളും വ്യക്തിത്വവും മനസ്സിലാക്കി, ഉൾക്കൊള്ളുന്ന (inclusive) നിയമകരോടുകൂടിയ ശരിയായ ജോലികൾ നിർദേശിക്കുകയും, നിങ്ങളുടെ കഴിവുകൾ വികസിപ്പിക്കാൻ സഹായിക്കുകയും ചെയ്യുന്ന ഒരു പ്ലാറ്റ്ഫോം ഉണ്ടെങ്കിൽ, അത് നിങ്ങൾ ഉപയോഗിക്കുമോ?",
+    "options": [
+      {"label": "അതെ", "value": "Yes"},
+      {"label": "ഇല്ല", "value": "No"},
+      {"label": "ബഹുശഃ / ആയേക്കാം", "value": "Maybe"}
+    ],
+    "required": true
+  }
+]

@@ -1,0 +1,283 @@
+[
+    {
+      "key": "employment_status",
+      "type": "select",
+      "question": "Are you currently employed?",
+      "options": [
+        {"label": "Yes, full-time", "value": "Yes, full-time"},
+        {"label": "Yes, part-time", "value": "Yes, part-time"},
+        {"label": "Freelancing/Gig work", "value": "Freelancing/Gig work"},
+        {"label": "Currently seeking employment", "value": "Currently seeking employment"},
+        {"label": "Other", "value": "Other"}
+      ],
+      "required": true
+    },
+    {
+      "key": "job_finding",
+      "type": "select",
+      "question": "How did you find your current/most recent job?",
+      "options": [
+        {"label": "Direct company application", "value": "Direct company application"},
+        {"label": "Referral / Friend", "value": "Referral / Friend"},
+        {"label": "NGO / DEI initiative", "value": "NGO / DEI initiative"},
+        {"label": "Job board", "value": "Job board"},
+        {"label": "Other", "value": "Other"}
+      ],
+      "required": true
+    },
+    {
+      "key": "education_level",
+      "type": "select",
+      "question": "What’s your highest education level or professional training?",
+      "options": [
+        {"label": "High school", "value": "High school"},
+        {"label": "Bachelor's", "value": "Bachelor's"},
+        {"label": "Master's", "value": "Master's"},
+        {"label": "Professional training", "value": "Professional training"},
+        {"label": "Other", "value": "Other"}
+      ],
+      "required": true
+    },
+    {
+      "key": "industry",
+      "type": "select",
+      "question": "Which industry are you currently in (or trying to enter)?",
+      "options": [
+        {"label": "Tech / IT", "value": "Tech / IT"},
+        {"label": "Retail / Service", "value": "Retail / Service"},
+        {"label": "Corporate / Finance", "value": "Corporate / Finance"},
+        {"label": "Creative / Media", "value": "Creative / Media"},
+        {"label": "Other", "value": "Other"}
+      ],
+      "required": true
+    },
+    {
+      "key": "job_satisfaction",
+      "type": "select",
+      "question": "How satisfied are you with your current job role?",
+      "options": [
+        {"label": "Very Satisfied", "value": "Very Satisfied"},
+        {"label": "1", "value": "1"},
+        {"label": "2", "value": "2"},
+        {"label": "3", "value": "3"},
+        {"label": "4", "value": "4"},
+        {"label": "5", "value": "5"},
+        {"label": "Not Satisfied", "value": "Not Satisfied"}
+      ],
+      "required": true
+    },
+    {
+      "key": "job_matches_skills",
+      "type": "select",
+      "question": "Do you feel your job matches your skills and interests?",
+      "options": [
+        {"label": "Yes, completely", "value": "Yes, completely"},
+        {"label": "Somewhat", "value": "Somewhat"},
+        {"label": "Not really", "value": "Not really"},
+        {"label": "Not at all", "value": "Not at all"}
+      ],
+      "required": true
+    },
+    {
+      "key": "dei_job_offer",
+      "type": "select",
+      "question": "Were you ever offered a job that didn’t align with your skills but was suggested due to DEI hiring?",
+      "options": [
+        {"label": "Yes", "value": "Yes"},
+        {"label": "No", "value": "No"}
+      ],
+      "required": true
+    },
+    {
+      "key": "dei_job_reason",
+      "type": "textarea",
+      "question": "If yes, why did you accept / reject it?",
+      "required": true
+    },
+    {
+      "key": "workplace_challenges",
+      "type": "select",
+      "question": "What are the biggest challenges you’ve faced in your workplace as a trans/LGBTQIA+ person?",
+      "options": [
+        {"label": "Bias / discrimination", "value": "Bias / discrimination"},
+        {"label": "Lack of growth opportunities", "value": "Lack of growth opportunities"},
+        {"label": "Low pay compared to peers", "value": "Low pay compared to peers"},
+        {"label": "Token hiring", "value": "Token hiring"},
+        {"label": "Lack of inclusive facilities", "value": "Lack of inclusive facilities"},
+        {"label": "Mental health strain", "value": "Mental health strain"},
+        {"label": "Other", "value": "Other"}
+      ],
+      "required": true
+    },
+    {
+      "key": "career_confidence",
+      "type": "select",
+      "question": "How confident do you feel in your professional growth path right now?",
+      "options": [
+        {"label": "Very Confident", "value": "Very Confident"},
+        {"label": "1", "value": "1"},
+        {"label": "2", "value": "2"},
+        {"label": "3", "value": "3"},
+        {"label": "4", "value": "4"},
+        {"label": "5", "value": "5"},
+        {"label": "Not Confident", "value": "Not Confident"}
+      ],
+      "required": true
+    },
+    {
+      "key": "formal_training",
+      "type": "select",
+      "question": "Have you received any formal skill training from a DEI or NGO initiative?",
+      "options": [
+        {"label": "Yes", "value": "Yes"},
+        {"label": "No", "value": "No"}
+      ],
+      "required": true
+    },
+    {
+      "key": "training_helped",
+      "type": "select",
+      "question": "Did that training help you secure a better job?",
+      "options": [
+        {"label": "Yes, very much", "value": "Yes, very much"},
+        {"label": "Somewhat", "value": "Somewhat"},
+        {"label": "Not really", "value": "Not really"},
+        {"label": "No", "value": "No"}
+      ],
+      "required": true
+    },
+    {
+      "key": "desired_training",
+      "type": "select",
+      "question": "What type of training would help you most right now?",
+      "options": [
+        {"label": "Digital / tech skills", "value": "Digital / tech skills"},
+        {"label": "Communication & soft skills", "value": "Communication & soft skills"},
+        {"label": "Career guidance", "value": "Career guidance"},
+        {"label": "Career focused skill training", "value": "Career focused skill training"},
+        {"label": "Entrepreneurship", "value": "Entrepreneurship"},
+        {"label": "Other", "value": "Other"}
+      ],
+      "required": true
+    },
+    {
+      "key": "platform_interest",
+      "type": "select",
+      "question": "Would you be interested in a platform that suggests jobs based on your actual skills and helps you upskill for them?",
+      "options": [
+        {"label": "Yes", "value": "Yes"},
+        {"label": "Maybe", "value": "Maybe"},
+        {"label": "No", "value": "No"}
+      ],
+      "required": true
+    },
+    {
+      "key": "dei_policy",
+      "type": "select",
+      "question": "Does your current employer have a DEI policy in place?",
+      "options": [
+        {"label": "Yes", "value": "Yes"},
+        {"label": "Maybe", "value": "Maybe"},
+        {"label": "No", "value": "No"}
+      ],
+      "required": true
+    },
+    {
+      "key": "dei_tokenistic",
+      "type": "select",
+      "question": "Do you believe your employer’s DEI hiring is genuine or tokenistic?",
+      "options": [
+        {"label": "Genuine", "value": "Genuine"},
+        {"label": "Somewhat genuine", "value": "Somewhat genuine"},
+        {"label": "Tokenistic", "value": "Tokenistic"},
+        {"label": "Don’t know", "value": "Don’t know"}
+      ],
+      "required": true
+    },
+    {
+      "key": "safety_identity",
+      "type": "select",
+      "question": "Do you feel safe being open about your identity at work?",
+      "options": [
+        {"label": "Very Safe", "value": "Very Safe"},
+        {"label": "1", "value": "1"},
+        {"label": "2", "value": "2"},
+        {"label": "3", "value": "3"},
+        {"label": "4", "value": "4"},
+        {"label": "5", "value": "5"},
+        {"label": "Not Safe Enough", "value": "Not Safe Enough"}
+      ],
+      "required": true
+    },
+    {
+      "key": "workplace_inclusion_suggestion",
+      "type": "textarea",
+      "question": "What do you think would make your workplace more inclusive?",
+      "required": true
+    },
+    {
+      "key": "trans_org_help",
+      "type": "select",
+      "question": "Do you think if an organization run by trans people helped your company with DEI policies and programmes, it would make the workplace more comfortable for you?",
+      "options": [
+        {"label": "Yes", "value": "Yes"},
+        {"label": "No", "value": "No"},
+        {"label": "Maybe", "value": "Maybe"}
+      ],
+      "required": true
+    },
+    {
+      "key": "bias_freelance",
+      "type": "select",
+      "question": "Have you ever faced bias when applying for freelance or gig work?",
+      "options": [
+        {"label": "Yes", "value": "Yes"},
+        {"label": "No", "value": "No"},
+        {"label": "Maybe", "value": "Maybe"}
+      ],
+      "required": true
+    },
+    {
+      "key": "prefer_freelance",
+      "type": "select",
+      "question": "Would you prefer freelance/gig opportunities if they came with safety, verified pay, and inclusive employers?",
+      "options": [
+        {"label": "Yes", "value": "Yes"},
+        {"label": "No", "value": "No"},
+        {"label": "Maybe", "value": "Maybe"}
+      ],
+      "required": true
+    },
+    {
+      "key": "career_goal_3yr",
+      "type": "textarea",
+      "question": "What’s your career goal for the next 3 years?",
+      "required": true
+    },
+    {
+      "key": "career_obstacles",
+      "type": "select",
+      "question": "What’s stopping you from getting there today?",
+      "options": [
+        {"label": "Lack of opportunity", "value": "Lack of opportunity"},
+        {"label": "Lack of skills", "value": "Lack of skills"},
+        {"label": "Bias / discrimination", "value": "Bias / discrimination"},
+        {"label": "Lack of mentorship", "value": "Lack of mentorship"},
+        {"label": "Financial issues", "value": "Financial issues"},
+        {"label": "Other", "value": "Other"}
+      ],
+      "required": true
+    },
+    {
+      "key": "platform_usage",
+      "type": "select",
+      "question": "If a platform existed that matched you with jobs aligned to your skills and inclusive employers and helped you upskill, would you use it?",
+      "options": [
+        {"label": "Yes", "value": "Yes"},
+        {"label": "No", "value": "No"},
+        {"label": "Maybe", "value": "Maybe"}
+      ],
+      "required": true
+    }
+  ]
+  
