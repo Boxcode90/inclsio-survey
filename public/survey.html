@@ -1,38 +1,71 @@
 <!DOCTYPE html>
-
 <html>
 <head>
   <title>Survey</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: Arial, sans-serif;
       background: linear-gradient(135deg, red, orange, yellow, green, blue, indigo, violet);
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
       display: flex;
       justify-content: center;
       align-items: flex-start;
       min-height: 100vh;
+      padding-top: 20px; /* add space at top for small screens */
     }
+
     .container {
-      width: 90%; max-width: 700px;
+      width: 90%;
+      max-width: 700px;
       background: rgba(255,255,255,0.85);
-      margin: 40px auto; padding: 25px;
+      margin: 20px auto;
+      padding: 25px;
       border-radius: 12px;
+      box-sizing: border-box;
     }
+
     textarea {
-      width: 100%; padding: 10px;
-      border-radius: 8px; margin-top: 6px;
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 6px;
       border: 1px solid #888;
+      font-size: 14px;
     }
+
     button {
-      padding: 12px 20px; margin-top: 20px;
-      border: none; border-radius: 8px;
-      background: black; color: white;
-      font-size: 16px; cursor: pointer;
+      width: 100%;
+      padding: 12px 0;
+      margin-top: 20px;
+      border: none;
+      border-radius: 8px;
+      background: black;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      box-sizing: border-box;
     }
-    label { font-weight: bold; margin-top: 12px; display: block; }
-    .question { margin-bottom: 20px; }
-    .options { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
+
+    label {
+      font-weight: bold;
+      margin-top: 12px;
+      display: block;
+      font-size: 14px;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
     .option-btn {
       padding: 10px 15px;
       border: 2px solid #ccc;
@@ -41,14 +74,36 @@
       transition: 0.2s;
       user-select: none;
       background-color: #f0f0f0;
+      font-size: 14px;
     }
+
     .option-btn:hover {
       background-color: #e0e0e0;
     }
+
     .option-btn.selected {
       background-color: #007bff;
       color: white;
       border-color: #0056b3;
+    }
+
+    /* ===== Mobile Adjustments ===== */
+    @media (max-width: 480px) {
+      .container {
+        padding: 15px;
+      }
+
+      textarea, .option-btn {
+        font-size: 13px;
+      }
+
+      label {
+        font-size: 13px;
+      }
+
+      button {
+        font-size: 15px;
+      }
     }
   </style>
 </head>

@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Select Language</title>
   <style>
     /* ===== Global Reset ===== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: "Segoe UI", sans-serif;
@@ -16,77 +21,96 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
+      padding: 10px;
     }
 
-```
-@keyframes rainbowBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+    @keyframes rainbowBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-.card {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  padding: 35px;
-  width: 350px;
-  border-radius: 22px;
-  text-align: center;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  border: 2px solid rgba(255,255,255,0.25);
-}
+    .card {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      padding: 35px;
+      width: 90%;        /* responsive width */
+      max-width: 400px;  /* cap on large screens */
+      border-radius: 22px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      border: 2px solid rgba(255,255,255,0.25);
+    }
 
-h2 {
-  margin-bottom: 20px;
-  font-weight: 700;
-  font-size: 24px;
-  text-shadow: 0 0 8px rgba(255,255,255,0.65);
-}
-option{
-  color:black;
-}
-select {
-  width: 100%;
-  padding: 12px;
-  border-radius: 12px;
-  border: none;
-  font-size: 16px;
-  margin-bottom: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  background: rgba(255,255,255,0.3);
-  color: #fff;
-  text-shadow: 0 0 4px rgba(0,0,0,0.3);
-  appearance: none;
-}
+    h2 {
+      margin-bottom: 20px;
+      font-weight: 700;
+      font-size: 24px;
+      text-shadow: 0 0 8px rgba(255,255,255,0.65);
+    }
 
-button {
-  width: 100%;
-  padding: 14px;
-  font-size: 17px;
-  border-radius: 14px;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  background: linear-gradient(90deg, #ff0059, #ff6600, #ffee00, #00e65d, #009dff, #b500ff);
-  background-size: 300% 300%;
-  animation: rainbowBtn 6s ease infinite;
-  color: #fff;
-  box-shadow: 0 5px 14px rgba(0,0,0,0.4);
-  transition: transform 0.2s;
-}
+    select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: none;
+      font-size: 16px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      background: rgba(255,255,255,0.3);
+      color: #fff;
+      text-shadow: 0 0 4px rgba(0,0,0,0.3);
+      appearance: none;
+    }
 
-button:hover {
-  transform: scale(1.05);
-}
+    option {
+      color: black;
+    }
 
-@keyframes rainbowBtn {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-```
+    button {
+      width: 100%;
+      padding: 14px;
+      font-size: 17px;
+      border-radius: 14px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      background: linear-gradient(90deg, #ff0059, #ff6600, #ffee00, #00e65d, #009dff, #b500ff);
+      background-size: 300% 300%;
+      animation: rainbowBtn 6s ease infinite;
+      color: #fff;
+      box-shadow: 0 5px 14px rgba(0,0,0,0.4);
+      transition: transform 0.2s;
+    }
 
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes rainbowBtn {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ===== Mobile adjustments ===== */
+    @media (max-width: 480px) {
+      .card {
+        padding: 20px;
+      }
+      h2 {
+        font-size: 20px;
+      }
+      select {
+        font-size: 14px;
+        padding: 10px;
+      }
+      button {
+        font-size: 15px;
+        padding: 12px;
+      }
+    }
   </style>
 </head>
 <body>
