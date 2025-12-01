@@ -152,7 +152,7 @@
     return;
   }
       // POST survey data
-      await fetch("https://inclsio-survey.onrender.com", {
+      await fetch("https://inclsio-survey.onrender.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
