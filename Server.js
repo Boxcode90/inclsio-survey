@@ -10,7 +10,8 @@ app.use(express.json());
 
 // Serve static files
 app.use(express.static(path.join(__dirname, "public")));
-
+const uri = process.env.MONGODB_URI; 
+const client = new MongoClient(uri);
 async function start() {
   try {
     await client.connect();
