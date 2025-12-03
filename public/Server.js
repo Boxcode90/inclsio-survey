@@ -41,7 +41,8 @@ async function start() {
         await collection.insertOne(req.body);
 
         // increment form count per language
-        const lang = req.body.language || "english";
+        const lang = req.body.language;
+        console.log(lang);
         const today = new Date().toISOString().split("T")[0];
         await analytics.updateOne(
           { date: today },
@@ -60,22 +61,28 @@ async function start() {
     app.post("/email-submit", async (req, res) => {
       try {
         await emailCollection.insertOne(req.body);
-
-        // increment email count
+    
+        const lang = req.body.lang || "english";   // <-- read language
         const today = new Date().toISOString().split("T")[0];
+    
         await analytics.updateOne(
           { date: today },
-          { $inc: { emails: 1 } },
+          { 
+            $inc: { 
+              emails: 1,               // total emails
+              [`emailLang.${lang}`]: 1 // per-language email count
+            }
+          },
           { upsert: true }
         );
-
+    
         res.send("Email saved successfully!");
       } catch (err) {
         console.error(err);
         res.status(500).send("Error saving email");
       }
     });
-
+    
     // SERVE ANY JSON FILE BASED ON LANGUAGE
     app.get("/questions", (req, res) => {
       const lang = req.query.lang || "english";
