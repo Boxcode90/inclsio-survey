@@ -13,7 +13,7 @@
       justify-content: center;
       align-items: flex-start;
       min-height: 100vh;
-      padding-top: 20px; /* add space at top for small screens */
+      padding-top: 20px;
     }
 
     .container {
@@ -87,7 +87,6 @@
       border-color: #0056b3;
     }
 
-    /* ===== Mobile Adjustments ===== */
     @media (max-width: 480px) {
       .container {
         padding: 15px;
@@ -110,49 +109,52 @@
 <body>
   <div class="container">
     <h2>Survey Form</h2>
-    <form id="surveyForm">
-      <input type="hidden" id="language" name="language" value="">
-      <button type="submit">Submit</button>
-    </form>
+    <form id="surveyForm"></form>
+    <input type="hidden" id="language" name="language" value="">
+    <button id="submitBtn">Submit</button>
   </div>
 
   <script>
     const params = new URLSearchParams(window.location.search);
-    const lang = params.get("lang") || "english";
+    const lang = params.get("lang");
+    
+    // set language in hidden input
+    document.getElementById("language").value = lang;
+
+    let allAnswered = true;
 
     async function loadSurvey() {
       const res = await fetch(`${lang}.json`);
       const questions = await res.json();
-    
       const form = document.getElementById("surveyForm");
-    
+
       questions.forEach((q, index) => {
         const div = document.createElement("div");
         div.className = "question";
-    
+
         const label = document.createElement("label");
         label.textContent = `${index + 1}. ${q.question}`;
         div.appendChild(label);
-    
+
         if (q.type === "select") {
           const optionsDiv = document.createElement("div");
           optionsDiv.className = "options";
-    
+
           q.options.forEach(opt => {
             const btn = document.createElement("div");
             btn.className = "option-btn";
             btn.textContent = opt.label;
             btn.dataset.value = opt.value;
             btn.dataset.key = q.key;
-    
+
             btn.addEventListener("click", () => {
               optionsDiv.querySelectorAll(".option-btn").forEach(b => b.classList.remove("selected"));
               btn.classList.add("selected");
             });
-    
+
             optionsDiv.appendChild(btn);
           });
-    
+
           div.appendChild(optionsDiv);
         } else if (q.type === "textarea") {
           const ta = document.createElement("textarea");
@@ -160,40 +162,36 @@
           ta.rows = 3;
           div.appendChild(ta);
         }
-    
-        form.insertBefore(div, form.querySelector("button"));
+
+        form.appendChild(div);
       });
     }
-    
-    loadSurvey();
-    
-    const form = document.getElementById("surveyForm");
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      let allAnswered = true;
-      const data = {};
 
-      // collect option questions
-      form.querySelectorAll(".option-btn.selected").forEach(btn => {
+    loadSurvey();
+
+    document.getElementById("submitBtn").addEventListener("click", async () => {
+      allAnswered = true;
+
+      const form = document.getElementById("surveyForm");
+      const data = { language: document.getElementById("language").value };
+      console.log(data.language);
+      // collect option answers
+      document.querySelectorAll(".option-btn.selected").forEach(btn => {
         data[btn.dataset.key] = btn.dataset.value;
       });
 
-      // collect textarea answers and validate
-      form.querySelectorAll(".question").forEach(div => {
+      // collect textarea answers
+      form.querySelectorAll("textarea").forEach(ta => {
+        data[ta.name] = ta.value.trim();
+      });
+
+      // validate all questions answered
+      document.querySelectorAll(".question").forEach(div => {
         const option = div.querySelector(".option-btn.selected");
         const textarea = div.querySelector("textarea");
 
-        if (option) {
-          data[option.dataset.key] = option.dataset.value;
+        if (option || (textarea && textarea.value.trim() !== "")) {
           div.style.border = "";
-        } else if (textarea) {
-          if (textarea.value.trim() === "") {
-            allAnswered = false;
-            div.style.border = "2px solid red";
-          } else {
-            data[textarea.name] = textarea.value.trim();
-            div.style.border = "";
-          }
         } else {
           allAnswered = false;
           div.style.border = "2px solid red";
@@ -202,17 +200,17 @@
 
       if (!allAnswered) {
         alert("Please answer all questions before submitting.");
+        
         return;
       }
-
-      // POST survey data
+      data.lang = lang; 
       await fetch("https://inclsio-survey.onrender.com/submit", {
+        
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
       });
-
-      // redirect
+    
       window.location.href = "email.html";
     });
   </script>
