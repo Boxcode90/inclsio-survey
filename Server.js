@@ -12,7 +12,7 @@ app.use(express.json());
 // 🔐 MongoDB Connection Check
 // --------------------------
 
-const uri = process.env.MONGO_URL || process.env.MONGO_URI;
+const uri = process.env.MONGODB_URL 
 
 if (!uri || typeof uri !== "string" || uri.trim() === "") {
   console.error("FATAL: MongoDB connection string is missing. Set MONGO_URL (or MONGO_URI) in Render environment variables.");
