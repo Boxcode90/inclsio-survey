@@ -87,19 +87,49 @@
       border-color: #0056b3;
     }
 
+    /* FEEDBACK POPUP */
+    #feedbackPopup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 25px 35px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.25);
+      text-align: center;
+      font-size: 18px;
+      z-index: 9999;
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    #feedbackPopup .icon {
+      font-size: 48px;
+      margin-bottom: 10px;
+      animation: pop 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -48%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.6); }
+      100% { transform: scale(1); }
+    }
+
     @media (max-width: 480px) {
       .container {
         padding: 15px;
       }
-
       textarea, .option-btn {
         font-size: 13px;
       }
-
       label {
         font-size: 13px;
       }
-
       button {
         font-size: 15px;
       }
@@ -107,6 +137,13 @@
   </style>
 </head>
 <body>
+
+  <!-- FEEDBACK POPUP -->
+  <div id="feedbackPopup">
+    <div class="icon">✔️</div>
+    <div>Submitting your response...</div>
+  </div>
+
   <div class="container">
     <h2>Survey Form</h2>
     <form id="surveyForm"></form>
@@ -117,80 +154,79 @@
   <script>
     const params = new URLSearchParams(window.location.search);
     const lang = params.get("lang") || "english";
-  
+
     document.getElementById("language").value = lang;
-  
+
     let allAnswered = true;
-  
+
     async function loadSurvey() {
-      // Load questions from Netlify function
       const res = await fetch(`/.netlify/functions/questions?lang=${lang}`);
       const questions = await res.json();
       const form = document.getElementById("surveyForm");
-  
+
       questions.forEach((q, index) => {
         const div = document.createElement("div");
         div.className = "question";
-  
+
         const label = document.createElement("label");
         label.textContent = `${index + 1}. ${q.question}`;
         div.appendChild(label);
-  
+
         if (q.type === "select") {
           const optionsDiv = document.createElement("div");
           optionsDiv.className = "options";
-  
+
           q.options.forEach(opt => {
             const btn = document.createElement("div");
             btn.className = "option-btn";
             btn.textContent = opt.label;
             btn.dataset.value = opt.value;
             btn.dataset.key = q.key;
-  
+
             btn.addEventListener("click", () => {
               optionsDiv.querySelectorAll(".option-btn")
                 .forEach(b => b.classList.remove("selected"));
               btn.classList.add("selected");
             });
-  
+
             optionsDiv.appendChild(btn);
           });
           div.appendChild(optionsDiv);
-  
+
         } else if (q.type === "textarea") {
           const ta = document.createElement("textarea");
           ta.name = q.key;
           ta.rows = 3;
           div.appendChild(ta);
         }
-  
+
         form.appendChild(div);
       });
     }
-  
+
     loadSurvey();
-  
+
     document.getElementById("submitBtn").addEventListener("click", async () => {
       allAnswered = true;
-  
+
       const form = document.getElementById("surveyForm");
       const data = { language: document.getElementById("language").value };
-  
+
       // collect option answers
       document.querySelectorAll(".option-btn.selected").forEach(btn => {
         data[btn.dataset.key] = btn.dataset.value;
       });
-  
+
       // collect textarea answers
       form.querySelectorAll("textarea").forEach(ta => {
         data[ta.name] = ta.value.trim();
       });
-  
+
       // validate everything filled
       document.querySelectorAll(".question").forEach(div => {
         const option = div.querySelector(".option-btn.selected");
         const textarea = div.querySelector("textarea");
-  
+
         if (option || (textarea && textarea.value.trim() !== "")) {
           div.style.border = "";
         } else {
@@ -198,24 +234,31 @@
           div.style.border = "2px solid red";
         }
       });
-  
+
       if (!allAnswered) {
         alert("Please answer all questions before submitting.");
         return;
       }
-  
+
       data.lang = lang;
-  
-      // Submit to Netlify function
+
+      // 🔥 SHOW FEEDBACK POPUP
+      const popup = document.getElementById("feedbackPopup");
+      popup.style.display = "block";
+
+      // Submit to Netlify
       await fetch("/.netlify/functions/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
       });
-  
-      window.location.href = "email.html";
+
+      // Wait so user sees the success popup
+      setTimeout(() => {
+        window.location.href = "email.html";
+      }, 1200);
     });
   </script>
-  
+
 </body>
 </html>
