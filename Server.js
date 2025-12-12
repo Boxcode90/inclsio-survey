@@ -3,7 +3,6 @@ const cors = require("cors");
 const { MongoClient } = require("mongodb");
 const path = require("path");
 const fs = require("fs");
-
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -19,14 +18,7 @@ if (!uri || typeof uri !== "string" || uri.trim() === "") {
   process.exit(1);
 }
 
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
-
-// --------------------------
-// Static files (public)
-// --------------------------
+const client = new MongoClient(uri);
 app.use(express.static(path.join(__dirname, "public")));
 
 async function start() {
