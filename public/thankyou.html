@@ -108,5 +108,19 @@
     <p>You’re officially on the early access list.</p>
 
   </div>
+  <script>
+      if (performance.navigation.type === 1) {
+    // 1 = Reload
+    window.location.replace("index.html");
+  }
+
+  // BLOCK BACK BUTTON
+  window.history.pushState(null, "", window.location.href);
+  window.onpopstate = function () {
+    // When back button is pressed → go home
+    window.location.replace("index.html");
+  };
+  </script>
 </body>
+  
 </html>
