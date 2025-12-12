@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Early Access</title>
+
   <style>
     body {
       margin: 0;
@@ -37,7 +38,7 @@
       box-sizing: border-box;
     }
 
-    h2,h3 {
+    h2, h3 {
       color: white;
       font-size: 20px;
       margin-bottom: 20px;
@@ -78,90 +79,150 @@
       height: 16px;
     }
 
-    #successMsg {
-      margin-top: 10px;
-      color: #00ffbf;
-      font-size: 14px;
-      height: 16px;
+    /* ===== Loading Overlay ===== */
+
+    #loadingOverlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      backdrop-filter: blur(6px);
+      background: rgba(0,0,0,0.45);
+      z-index: 99999;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      color: white;
+      animation: fadeInOverlay 0.3s ease-out;
     }
 
-    /* ===== Mobile Adjustments ===== */
-    @media (max-width: 480px) {
-      .container {
-        padding: 20px 15px;
-      }
+    @keyframes fadeInOverlay {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
 
-      input, button {
-        font-size: 14px;
-        padding: 10px;
-      }
+    .spinner {
+      width: 55px;
+      height: 55px;
+      border: 6px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 1s infinite linear;
+      margin-bottom: 16px;
+    }
 
-      h2 {
-        font-size: 18px;
-      }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      font-size: 19px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .loading-sub {
+      font-size: 15px;
+      opacity: 0.85;
     }
   </style>
+</head>
+
 <body>
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay">
+    <div class="spinner"></div>
+    <div class="loading-text" id="loadingMainText">Submitting…</div>
+    <div class="loading-sub" id="loadingSubText">Please don’t close this page</div>
+  </div>
+
   <div class="container">
     <h2>To join this study, kindly let us know your name and your best e-mail</h2><br>
-
-      <h3>Bonus: early access to Inclusio</h3>
+    <h3>Bonus: early access to Inclusio</h3>
 
     <form id="emailForm">
       <input 
         type="email" 
         id="emailInput" 
-        placeholder="yourname@example.com" 
-        required 
+        placeholder="yourname@example.com"
+        required
       />
-    <input type="name" 
-          id="nameInput"
-          placeholder="Your preferred name"
-          required
-          />
-      <p id="errorMsg"></p>
 
+      <input 
+        type="text" 
+        id="nameInput"
+        placeholder="Your preferred name"
+        required
+      />
+
+      <p id="errorMsg"></p>
       <button type="submit">Submit</button>
     </form>
-
-    <p id="successMsg"></p>
   </div>
+
+
   <script>
     const form = document.getElementById("emailForm");
     const emailInput = document.getElementById("emailInput");
     const nameInput = document.getElementById("nameInput");
     const errorMsg = document.getElementById("errorMsg");
-  
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       errorMsg.textContent = "";
-  
+
       const email = emailInput.value.trim();
       const name = nameInput.value.trim();
-      // Basic email pattern check
+
       const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  
       if (!pattern.test(email)) {
         errorMsg.textContent = "Please enter a valid email.";
         return;
       }
-  
-      // ✅ POST email to your backend
+
+      // Show loading overlay
+      const overlay = document.getElementById("loadingOverlay");
+      overlay.style.display = "flex";
+
+      // Changing messages while loading
+      const main = document.getElementById("loadingMainText");
+      const sub = document.getElementById("loadingSubText");
+
+      let step = 0;
+      const messages = [
+        ["Submitting your details…", "Please don’t close this page"],
+        ["Connecting to the server…", "Almost there…"],
+        ["Saving your entry…", "Hang tight!"],
+      ];
+
+      const interval = setInterval(() => {
+        step = (step + 1) % messages.length;
+        main.textContent = messages[step][0];
+        sub.textContent = messages[step][1];
+      }, 1800);
+
       try {
         await fetch("https://inclsio-survey.onrender.com/email-submit", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, name }),
         });
-  
-        // Redirect after successful store
-        window.location.href = "thankyou.html";
+
+        clearInterval(interval);
+
+        // Smooth redirect after slight delay
+        setTimeout(() => {
+          window.location.href = "thankyou.html";
+        }, 700);
+
       } catch (err) {
-        errorMsg.textContent = "Server error: Unable to save email.";
+        clearInterval(interval);
+        overlay.style.display = "none";
+        errorMsg.textContent = "Server error. Please try again.";
       }
     });
   </script>
-  
 
 </body>
 </html>
