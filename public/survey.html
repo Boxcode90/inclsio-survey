@@ -287,6 +287,28 @@
         window.location.href = "email.html";
       }, 600);
     });
+      // Always send back button to home BEFORE submit
+  window.history.pushState(null, "", window.location.href);
+  window.onpopstate = function () {
+    // If not submitted → allow language change
+    if (!sessionStorage.getItem("survey_submitted")) {
+      window.location.replace("index.html");
+    } else {
+      // After submit → force home
+      window.location.replace("index.html");
+    }
+  };
+
+  // Call this function AFTER successful submit
+  function disableReloadAfterSubmit() {
+    sessionStorage.setItem("survey_submitted", "yes");
+  }
+
+  // If user reloads AFTER submission → go home
+  if (sessionStorage.getItem("survey_submitted") === "yes"
+      && performance.navigation.type === 1) {
+    window.location.replace("index.html");
+  }
   </script>
 
 </body>
