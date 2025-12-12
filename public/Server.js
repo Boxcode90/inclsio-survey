@@ -11,7 +11,7 @@ app.use(express.json());
 // Serve static files
 app.use(express.static(path.join(__dirname, "public")));
 
-const uri = "mongodb+srv://rafiqmohamed025_db_user:1924CY@cluster0.kxikrnk.mongodb.net/?appName=Cluster0";
+const uri = process.env.MONGO_URL
 const client = new MongoClient(uri);
 
 async function start() {
