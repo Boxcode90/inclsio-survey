@@ -129,6 +129,13 @@
       const lang = document.getElementById("lang").value;
       window.location.href = "survey.html?lang=" + lang;
     }
+    <script>
+  // Block back button completely on HOME PAGE
+  history.pushState(null, "", location.href);
+  window.onpopstate = function () {
+    history.pushState(null, "", location.href);
+  };
+</script>
   </script>
 
 </body>
