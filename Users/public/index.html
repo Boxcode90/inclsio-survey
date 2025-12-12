@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Language</title>
+  <style>
+    /* ===== Global Reset ===== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #ff004c, #ff8c00, #ffee00, #00e676, #00b0ff, #8e24aa);
+      background-size: 400% 400%;
+      animation: rainbowBG 12s ease infinite;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 10px;
+    }
+
+    @keyframes rainbowBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      padding: 35px;
+      width: 90%;        /* responsive width */
+      max-width: 400px;  /* cap on large screens */
+      border-radius: 22px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      border: 2px solid rgba(255,255,255,0.25);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-weight: 700;
+      font-size: 24px;
+      text-shadow: 0 0 8px rgba(255,255,255,0.65);
+    }
+
+    select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: none;
+      font-size: 16px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      background: rgba(255,255,255,0.3);
+      color: #fff;
+      text-shadow: 0 0 4px rgba(0,0,0,0.3);
+      appearance: none;
+    }
+
+    option {
+      color: black;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      font-size: 17px;
+      border-radius: 14px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      background: linear-gradient(90deg, #ff0059, #ff6600, #ffee00, #00e65d, #009dff, #b500ff);
+      background-size: 300% 300%;
+      animation: rainbowBtn 6s ease infinite;
+      color: #fff;
+      box-shadow: 0 5px 14px rgba(0,0,0,0.4);
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes rainbowBtn {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ===== Mobile adjustments ===== */
+    @media (max-width: 480px) {
+      .card {
+        padding: 20px;
+      }
+      h2 {
+        font-size: 20px;
+      }
+      select {
+        font-size: 14px;
+        padding: 10px;
+      }
+      button {
+        font-size: 15px;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Select Language</h2>
+    <select id="lang">
+      <option value="english">English</option>
+      <option value="hindi">Hindi</option>
+      <option value="malayalam">Malayalam</option>
+    </select>
+    <button onclick="goNext()">Continue</button>
+  </div>
+
+  <script>
+    function goNext() {
+      const lang = document.getElementById("lang").value;
+      window.location.href = "survey.html?lang=" + lang;
+    }
+  </script>
+
+</body>
+</html>

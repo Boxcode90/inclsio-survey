@@ -1,0 +1,282 @@
+[
+  {
+    "key": "employment_status",
+    "type": "select",
+    "question": "क्या आप अभी किसी नौकरी में हैं?",
+    "options": [
+      {"label": "हाँ, फुल-टाइम", "value": "Yes, full-time"},
+      {"label": "हाँ, पार्ट-टाइम", "value": "Yes, part-time"},
+      {"label": "फ़्रीलांस / गिग वर्क", "value": "Freelancing/Gig work"},
+      {"label": "नहीं, फिलहाल नौकरी की तलाश", "value": "Currently seeking employment"},
+      {"label": "अन्य", "value": "Other"}
+    ],
+    "required": true
+  },
+  {
+    "key": "job_finding",
+    "type": "select",
+    "question": "आपको अपनी मौजूदा या पिछली नौकरी कैसे मिली?",
+    "options": [
+      {"label": "डायरेक्ट कंपनी में आवेदन किया", "value": "Direct company application"},
+      {"label": "किसी दोस्त / रेफ़रल से", "value": "Referral / Friend"},
+      {"label": "किसी NGO या DEI प्रोग्राम के ज़रिए", "value": "NGO / DEI initiative"},
+      {"label": "जॉब पोर्टल से", "value": "Job board"},
+      {"label": "अन्य", "value": "Other"}
+    ],
+    "required": true
+  },
+  {
+    "key": "education_level",
+    "type": "select",
+    "question": "आपकी सबसे ऊँची शिक्षा या प्रोफ़ेशनल ट्रेनिंग क्या है?",
+    "options": [
+      {"label": "हाई स्कूल", "value": "High school"},
+      {"label": "स्नातक", "value": "Bachelor's"},
+      {"label": "स्नातकोत्तर", "value": "Master's"},
+      {"label": "प्रोफ़ेशनल ट्रेनिंग", "value": "Professional training"},
+      {"label": "अन्य", "value": "Other"}
+    ],
+    "required": true
+  },
+  {
+    "key": "industry",
+    "type": "select",
+    "question": "आप अभी किस इंडस्ट्री में काम कर रहे हैं (या करना चाहते हैं)?",
+    "options": [
+      {"label": "टेक / IT", "value": "Tech / IT"},
+      {"label": "रिटेल / सर्विस", "value": "Retail / Service"},
+      {"label": "कॉर्पोरेट / फाइनेंस", "value": "Corporate / Finance"},
+      {"label": "क्रिएटिव / मीडिया", "value": "Creative / Media"},
+      {"label": "अन्य", "value": "Other"}
+    ],
+    "required": true
+  },
+  {
+    "key": "job_satisfaction",
+    "type": "select",
+    "question": "आप अपनी मौजूदा नौकरी से कितने संतुष्ट हैं?",
+    "options": [
+      {"label": "हाँ, पूरी तरह", "value": "Very Satisfied"},
+      {"label": "1", "value": "1"},
+      {"label": "2", "value": "2"},
+      {"label": "3", "value": "3"},
+      {"label": "4", "value": "4"},
+      {"label": "5", "value": "5"},
+      {"label": "बिल्कुल नहीं", "value": "Not Satisfied"}
+    ],
+    "required": true
+  },
+  {
+    "key": "job_matches_skills",
+    "type": "select",
+    "question": "क्या आपको लगता है कि आपकी नौकरी आपके स्किल्स और इंटरेस्ट से मेल खाती है?",
+    "options": [
+      {"label": "हाँ, पूरी तरह", "value": "Yes, completely"},
+      {"label": "थोड़ा बहुत", "value": "Somewhat"},
+      {"label": "ज़्यादा नहीं", "value": "Not really"},
+      {"label": "बिल्कुल नहीं", "value": "Not at all"}
+    ],
+    "required": true
+  },
+  {
+    "key": "dei_job_offer",
+    "type": "select",
+    "question": "क्या कभी आपको ऐसी नौकरी ऑफ़र हुई जो आपके स्किल्स से मेल नहीं खाती थी, लेकिन DEI हायरिंग के चलते दी गई थी?",
+    "options": [
+      {"label": "हाँ", "value": "Yes"},
+      {"label": "नहीं", "value": "No"}
+    ],
+    "required": true
+  },
+  {
+    "key": "dei_job_reason",
+    "type": "textarea",
+    "question": "अगर हाँ, तो आपने वो जॉब क्यों स्वीकार / ठुकराई?",
+    "required": true
+  },
+  {
+    "key": "workplace_challenges",
+    "type": "select",
+    "question": "बताइए, ट्रांस / LGBTQIA+ व्यक्ति के रूप में आपने कार्यस्थल पर कौन सी सबसे बड़ी चुनौतियाँ झेली हैं?",
+    "options": [
+      {"label": "भेदभाव या बायस", "value": "Bias / discrimination"},
+      {"label": "ग्रोथ के मौके की कमी", "value": "Lack of growth opportunities"},
+      {"label": "बाकी लोगों की तुलना में कम वेतन", "value": "Low pay compared to peers"},
+      {"label": "केवल \"टोकन\" हायरिंग", "value": "Token hiring"},
+      {"label": "इनक्लूसिव सुविधाओं की कमी", "value": "Lack of inclusive facilities"},
+      {"label": "मानसिक स्वास्थ्य पर असर", "value": "Mental health strain"},
+      {"label": "अन्य", "value": "Other"}
+    ],
+    "required": true
+  },
+  {
+    "key": "career_confidence",
+    "type": "select",
+    "question": "अपने करियर ग्रोथ को लेकर आप इस समय कितने आत्मविश्वासी हैं?",
+    "options": [
+      {"label": "बहुत आत्मविश्वासी", "value": "Very Confident"},
+      {"label": "1", "value": "1"},
+      {"label": "2", "value": "2"},
+      {"label": "3", "value": "3"},
+      {"label": "4", "value": "4"},
+      {"label": "5", "value": "5"},
+      {"label": "आत्मविश्वास नहीं", "value": "Not Confident"}
+    ],
+    "required": true
+  },
+  {
+    "key": "formal_training",
+    "type": "select",
+    "question": "क्या आपने कभी किसी NGO या DEI इनिशिएटिव से कोई औपचारिक ट्रेनिंग ली है?",
+    "options": [
+      {"label": "हाँ", "value": "Yes"},
+      {"label": "नहीं", "value": "No"}
+    ],
+    "required": true
+  },
+  {
+    "key": "training_helped",
+    "type": "select",
+    "question": "क्या उस ट्रेनिंग से आपको बेहतर नौकरी पाने में मदद मिली?",
+    "options": [
+      {"label": "हाँ, बहुत ज़्यादा", "value": "Yes, very much"},
+      {"label": "कुछ हद तक", "value": "Somewhat"},
+      {"label": "ज़्यादा नहीं", "value": "Not really"},
+      {"label": "नहीं", "value": "No"}
+    ],
+    "required": true
+  },
+  {
+    "key": "desired_training",
+    "type": "select",
+    "question": "इस समय आपके लिए कौन-सी ट्रेनिंग सबसे मददगार होगी?",
+    "options": [
+      {"label": "डिजिटल / टेक स्किल्स", "value": "Digital / tech skills"},
+      {"label": "कम्युनिकेशन & सॉफ्ट स्किल्स", "value": "Communication & soft skills"},
+      {"label": "करियर गाइडेंस", "value": "Career guidance"},
+      {"label": "करियर में आगे बढ़ने वाली ट्रेनिंग", "value": "Career focused skill training"},
+      {"label": "बिज़नेस", "value": "Entrepreneurship"},
+      {"label": "अन्य", "value": "Other"}
+    ],
+    "required": true
+  },
+  {
+    "key": "platform_interest",
+    "type": "select",
+    "question": "अगर एक ऐसा प्लेटफ़ॉर्म हो जो आपके स्किल्स के अनुसार जॉब्स सुझाए और आपको उन पर ट्रेन करे — तो क्या आप उसे इस्तेमाल करना चाहेंगे?",
+    "options": [
+      {"label": "हाँ", "value": "Yes"},
+      {"label": "शायद", "value": "Maybe"},
+      {"label": "नहीं", "value": "No"}
+    ],
+    "required": true
+  },
+  {
+    "key": "dei_policy",
+    "type": "select",
+    "question": "क्या आपकी कंपनी में DEI (Diversity, Equity & Inclusion) पॉलिसी लागू है?",
+    "options": [
+      {"label": "हाँ", "value": "Yes"},
+      {"label": "शायद", "value": "Maybe"},
+      {"label": "नहीं", "value": "No"}
+    ],
+    "required": true
+  },
+  {
+    "key": "dei_tokenistic",
+    "type": "select",
+    "question": "क्या आपको लगता है आपकी कंपनी की DEI हायरिंग सच में इनक्लूसिव है या बस दिखावे के लिए?",
+    "options": [
+      {"label": "सच्ची और ईमानदार", "value": "Genuine"},
+      {"label": "कुछ हद तक", "value": "Somewhat genuine"},
+      {"label": "बस दिखावे के लिए", "value": "Tokenistic"},
+      {"label": "पता नहीं", "value": "Don’t know"}
+    ],
+    "required": true
+  },
+  {
+    "key": "safety_identity",
+    "type": "select",
+    "question": "क्या आप अपने कार्यस्थल पर अपनी पहचान (identity) के बारे में खुलकर बात करने में सुरक्षित महसूस करते हैं?",
+    "options": [
+      {"label": "बहुत सुरक्षित", "value": "Very Safe"},
+      {"label": "1", "value": "1"},
+      {"label": "2", "value": "2"},
+      {"label": "3", "value": "3"},
+      {"label": "4", "value": "4"},
+      {"label": "5", "value": "5"},
+      {"label": "असुरक्षित", "value": "Not Safe Enough"}
+    ],
+    "required": true
+  },
+  {
+    "key": "workplace_inclusion_suggestion",
+    "type": "textarea",
+    "question": "आपकी नज़र में क्या चीज़ आपके कार्यस्थल को ज़्यादा इनक्लूसिव बनाएगी?",
+    "required": true
+  },
+  {
+    "key": "trans_org_help",
+    "type": "select",
+    "question": "क्या तुम्हें लगता है अगर कोई ट्रांस लोगों की टीम तुम्हारी कंपनी को MEDICAL, LEGAL या SOCIAL पॉलिसीज़ जैसी चीज़ों में मदद करे, तो ऑफिस का माहौल तुम्हारे लिए ज़्यादा आरामदायक हो जाएगा?",
+    "options": [
+      {"label": "हाँ", "value": "Yes"},
+      {"label": "नहीं", "value": "No"},
+      {"label": "शायद", "value": "Maybe"}
+    ],
+    "required": true
+  },
+  {
+    "key": "bias_freelance",
+    "type": "select",
+    "question": "क्या आपको कभी फ़्रीलांस या गिग वर्क के दौरान बायस या भेदभाव का सामना करना पड़ा है?",
+    "options": [
+      {"label": "हाँ", "value": "Yes"},
+      {"label": "नहीं", "value": "No"},
+      {"label": "शायद", "value": "Maybe"}
+    ],
+    "required": true
+  },
+  {
+    "key": "prefer_freelance",
+    "type": "select",
+    "question": "अगर आपको फ़्रीलांस / गिग काम मिलें जहाँ पेमेंट सुरक्षित हो, नियोक्ता इनक्लूसिव हों और माहौल सुरक्षित हो — तो क्या आप ऐसे अवसरों को चुनेंगे?",
+    "options": [
+      {"label": "हाँ", "value": "Yes"},
+      {"label": "नहीं", "value": "No"},
+      {"label": "शायद", "value": "Maybe"}
+    ],
+    "required": true
+  },
+  {
+    "key": "career_goal_3yr",
+    "type": "textarea",
+    "question": "अगले 3 सालों में आपका करियर लक्ष्य क्या है?",
+    "required": true
+  },
+  {
+    "key": "career_obstacles",
+    "type": "select",
+    "question": "अभी उस लक्ष्य तक पहुँचने में सबसे बड़ी रुकावट क्या है?",
+    "options": [
+      {"label": "मौके की कमी", "value": "Lack of opportunity"},
+      {"label": "स्किल्स की कमी", "value": "Lack of skills"},
+      {"label": "बायस / भेदभाव", "value": "Bias / discrimination"},
+      {"label": "गाइडेंस या मेंटरशिप की कमी", "value": "Lack of mentorship"},
+      {"label": "आर्थिक परेशानी", "value": "Financial issues"},
+      {"label": "अन्य", "value": "Other"}
+    ],
+    "required": true
+  },
+  {
+    "key": "platform_usage",
+    "type": "select",
+    "question": "अगर कोई ऐसा प्लेटफ़ॉर्म हो जो आपके स्किल्स और पहचान — दोनों को समझ कर आपको सही इनक्लूसिव नौकरियाँ सुझाए, तो क्या आप उसे इस्तेमाल करेंगे?",
+    "options": [
+      {"label": "हाँ", "value": "Yes"},
+      {"label": "नहीं", "value": "No"},
+      {"label": "शायद", "value": "Maybe"}
+    ],
+    "required": true
+  }
+]

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Survey</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, red, orange, yellow, green, blue, indigo, violet);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding-top: 20px;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 700px;
+      background: rgba(255,255,255,0.85);
+      margin: 20px auto;
+      padding: 25px;
+      border-radius: 12px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      width: 90%;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 6px;
+      border: 1px solid #888;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px 0;
+      margin-top: 20px;
+      border: none;
+      border-radius: 8px;
+      background: black;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 12px;
+      display: block;
+      font-size: 14px;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .option-btn {
+      padding: 10px 15px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+      user-select: none;
+      background-color: #f0f0f0;
+      font-size: 14px;
+    }
+
+    .option-btn:hover {
+      background-color: #e0e0e0;
+    }
+
+    .option-btn.selected {
+      background-color: #007bff;
+      color: white;
+      border-color: #0056b3;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 15px;
+      }
+
+      textarea, .option-btn {
+        font-size: 13px;
+      }
+
+      label {
+        font-size: 13px;
+      }
+
+      button {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Survey Form</h2>
+    <form id="surveyForm"></form>
+    <input type="hidden" id="language" name="language" value="">
+    <button id="submitBtn">Submit</button>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const lang = params.get("lang") || "english";
+  
+    document.getElementById("language").value = lang;
+  
+    let allAnswered = true;
+  
+    async function loadSurvey() {
+      // Load questions from Netlify function
+      const res = await fetch(`/.netlify/functions/questions?lang=${lang}`);
+      const questions = await res.json();
+      const form = document.getElementById("surveyForm");
+  
+      questions.forEach((q, index) => {
+        const div = document.createElement("div");
+        div.className = "question";
+  
+        const label = document.createElement("label");
+        label.textContent = `${index + 1}. ${q.question}`;
+        div.appendChild(label);
+  
+        if (q.type === "select") {
+          const optionsDiv = document.createElement("div");
+          optionsDiv.className = "options";
+  
+          q.options.forEach(opt => {
+            const btn = document.createElement("div");
+            btn.className = "option-btn";
+            btn.textContent = opt.label;
+            btn.dataset.value = opt.value;
+            btn.dataset.key = q.key;
+  
+            btn.addEventListener("click", () => {
+              optionsDiv.querySelectorAll(".option-btn")
+                .forEach(b => b.classList.remove("selected"));
+              btn.classList.add("selected");
+            });
+  
+            optionsDiv.appendChild(btn);
+          });
+          div.appendChild(optionsDiv);
+  
+        } else if (q.type === "textarea") {
+          const ta = document.createElement("textarea");
+          ta.name = q.key;
+          ta.rows = 3;
+          div.appendChild(ta);
+        }
+  
+        form.appendChild(div);
+      });
+    }
+  
+    loadSurvey();
+  
+    document.getElementById("submitBtn").addEventListener("click", async () => {
+      allAnswered = true;
+  
+      const form = document.getElementById("surveyForm");
+      const data = { language: document.getElementById("language").value };
+  
+      // collect option answers
+      document.querySelectorAll(".option-btn.selected").forEach(btn => {
+        data[btn.dataset.key] = btn.dataset.value;
+      });
+  
+      // collect textarea answers
+      form.querySelectorAll("textarea").forEach(ta => {
+        data[ta.name] = ta.value.trim();
+      });
+  
+      // validate everything filled
+      document.querySelectorAll(".question").forEach(div => {
+        const option = div.querySelector(".option-btn.selected");
+        const textarea = div.querySelector("textarea");
+  
+        if (option || (textarea && textarea.value.trim() !== "")) {
+          div.style.border = "";
+        } else {
+          allAnswered = false;
+          div.style.border = "2px solid red";
+        }
+      });
+  
+      if (!allAnswered) {
+        alert("Please answer all questions before submitting.");
+        return;
+      }
+  
+      data.lang = lang;
+  
+      // Submit to Netlify function
+      await fetch("/.netlify/functions/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+  
+      window.location.href = "email.html";
+    });
+  </script>
+  
+</body>
+</html>
