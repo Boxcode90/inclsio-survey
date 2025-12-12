@@ -3,6 +3,7 @@
 <head>
   <title>Survey</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -87,26 +88,72 @@
       border-color: #0056b3;
     }
 
+    /* FULLSCREEN LOADING OVERLAY */
+    #loadingOverlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      backdrop-filter: blur(5px);
+      background: rgba(0,0,0,0.45);
+      z-index: 99999;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+      color: white;
+      animation: fadeInOverlay 0.3s ease-out;
+    }
+
+    @keyframes fadeInOverlay {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* SPINNER */
+    .spinner {
+      width: 55px;
+      height: 55px;
+      border: 6px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 1s infinite linear;
+      margin-bottom: 18px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      font-size: 19px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .loading-sub {
+      font-size: 15px;
+      opacity: 0.85;
+    }
+
     @media (max-width: 480px) {
-      .container {
-        padding: 15px;
-      }
-
-      textarea, .option-btn {
-        font-size: 13px;
-      }
-
-      label {
-        font-size: 13px;
-      }
-
-      button {
-        font-size: 15px;
-      }
+      .container { padding: 15px; }
+      textarea, .option-btn { font-size: 13px; }
+      label { font-size: 13px; }
+      button { font-size: 15px; }
     }
   </style>
 </head>
+
 <body>
+
+  <!-- LOADING OVERLAY -->
+  <div id="loadingOverlay">
+    <div class="spinner"></div>
+    <div class="loading-text" id="loadingMainText">Submitting your answers…</div>
+    <div class="loading-sub" id="loadingSubText">Please don’t close this page</div>
+  </div>
+
   <div class="container">
     <h2>Survey Form</h2>
     <form id="surveyForm"></form>
@@ -116,9 +163,8 @@
 
   <script>
     const params = new URLSearchParams(window.location.search);
-    const lang = params.get("lang");
-    
-    // set language in hidden input
+    const lang = params.get("lang") || "english";
+
     document.getElementById("language").value = lang;
 
     let allAnswered = true;
@@ -148,14 +194,15 @@
             btn.dataset.key = q.key;
 
             btn.addEventListener("click", () => {
-              optionsDiv.querySelectorAll(".option-btn").forEach(b => b.classList.remove("selected"));
+              optionsDiv.querySelectorAll(".option-btn")
+                .forEach(b => b.classList.remove("selected"));
               btn.classList.add("selected");
             });
 
             optionsDiv.appendChild(btn);
           });
-
           div.appendChild(optionsDiv);
+
         } else if (q.type === "textarea") {
           const ta = document.createElement("textarea");
           ta.name = q.key;
@@ -174,7 +221,7 @@
 
       const form = document.getElementById("surveyForm");
       const data = { language: document.getElementById("language").value };
-      console.log(data.language);
+
       // collect option answers
       document.querySelectorAll(".option-btn.selected").forEach(btn => {
         data[btn.dataset.key] = btn.dataset.value;
@@ -185,7 +232,7 @@
         data[ta.name] = ta.value.trim();
       });
 
-      // validate all questions answered
+      // validate everything filled
       document.querySelectorAll(".question").forEach(div => {
         const option = div.querySelector(".option-btn.selected");
         const textarea = div.querySelector("textarea");
@@ -200,19 +247,47 @@
 
       if (!allAnswered) {
         alert("Please answer all questions before submitting.");
-        
         return;
       }
-      data.lang = lang; 
+
+      data.lang = lang;
+
+      // SHOW LOADING OVERLAY
+      const overlay = document.getElementById("loadingOverlay");
+      overlay.style.display = "flex";
+
+      // Changing text messages every 2s
+      const main = document.getElementById("loadingMainText");
+      const sub = document.getElementById("loadingSubText");
+
+      let step = 0;
+      const messages = [
+        ["Submitting your answers…", "Please don’t close this page"],
+        ["Uploading to the server…", "Almost done…"],
+        ["Finalizing your submission…", "Hang tight!"]
+      ];
+
+      const interval = setInterval(() => {
+        step = (step + 1) % messages.length;
+        main.textContent = messages[step][0];
+        sub.textContent = messages[step][1];
+      }, 2000);
+
+      // SUBMIT TO RENDER
       await fetch("https://inclsio-survey.onrender.com/submit", {
-        
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
       });
-    
-      window.location.href = "email.html";
+
+      clearInterval(interval);
+
+      // Forward user after slight delay
+      setTimeout(() => {
+        window.location.href = "email.html";
+      }, 600);
     });
   </script>
+
 </body>
 </html>
