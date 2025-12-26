@@ -111,13 +111,20 @@ async function start() {
               to: [
                 { email: emailData.email }
               ],
-              subject: "Thanks for completing the survey",
+              subject: "Thank you for filling our survey!",
               textContent: `Hi,
+Thank you so much for taking the time to fill out our survey, it genuinely means a lot to us. Your input is helping shape something we hope will actually be useful for trans people navigating work and employment.
 
-Thanks for taking the time to share your email and complete the survey.
-Your response has been recorded.
+We’re still very early in the process, and as two trans people building this from scratch, we’re trying to learn as directly as possible from lived experiences.
 
-— Team Inclusio`
+If you’re open to it, we’d love to hear more about your corporate or employment experiences. Would you be up for a quick chat over a virtual coffee sometime this week? 
+
+No pressure at all, even a brief conversation would be incredibly helpful. If you’re interested, just reply to this email and we can figure out a time that works for you! 
+
+Thanks again for being part of this. We really appreciate it! 
+
+Warm Regards,
+Lucy & Neil, Inclusio`
             })
           });
         }
