@@ -1,3 +1,4 @@
+const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fetch(...args));
 const express = require("express");
 const cors = require("cors");
 const { MongoClient } = require("mongodb");
@@ -93,6 +94,7 @@ async function start() {
         );
 
         // 2. Send email via Brevo (Sendinblue)
+        console.log("Calling Brevo API for:", emailData.email);
         if (emailData.email) {
           await fetch("https://api.brevo.com/v3/smtp/email", {
             method: "POST",
