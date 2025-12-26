@@ -3,6 +3,7 @@ const cors = require("cors");
 const { MongoClient } = require("mongodb");
 const path = require("path");
 const fs = require("fs");
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -11,7 +12,7 @@ app.use(express.json());
 // 🔐 MongoDB Connection Check
 // --------------------------
 
-const uri = process.env.MONGODB_URL 
+const uri = process.env.MONGODB_URL;
 
 if (!uri || typeof uri !== "string" || uri.trim() === "") {
   console.error("FATAL: MongoDB connection string is missing. Set MONGO_URL (or MONGO_URI) in Render environment variables.");
@@ -68,13 +69,16 @@ async function start() {
     });
 
     // --------------------------
-    // Email Submit
+    // Email Submit  ✅ BREVO INTEGRATED HERE
     // --------------------------
     app.post("/email-submit", async (req, res) => {
       try {
-        await emailCollection.insertOne(req.body);
+        const emailData = req.body;
 
-        const lang = req.body.lang || "english";
+        // 1. Save email to DB
+        await emailCollection.insertOne(emailData);
+
+        const lang = emailData.lang || "english";
         const today = new Date().toISOString().split("T")[0];
 
         await analytics.updateOne(
@@ -88,10 +92,38 @@ async function start() {
           { upsert: true }
         );
 
-        res.send("Email saved successfully!");
+        // 2. Send email via Brevo (Sendinblue)
+        if (emailData.email) {
+          await fetch("https://api.brevo.com/v3/smtp/email", {
+            method: "POST",
+            headers: {
+              "accept": "application/json",
+              "content-type": "application/json",
+              "api-key": process.env.BREVO_API_KEY
+            },
+            body: JSON.stringify({
+              sender: {
+                name: process.env.BREVO_SENDER_NAME,
+                email: process.env.BREVO_SENDER_EMAIL
+              },
+              to: [
+                { email: emailData.email }
+              ],
+              subject: "Thanks for completing the survey",
+              textContent: `Hi,
+
+Thanks for taking the time to share your email and complete the survey.
+Your response has been recorded.
+
+— Team Inclusio`
+            })
+          });
+        }
+
+        res.send("Email saved and sent successfully!");
       } catch (err) {
         console.error(err);
-        res.status(500).send("Error saving email");
+        res.status(500).send("Error saving email or sending message");
       }
     });
 
